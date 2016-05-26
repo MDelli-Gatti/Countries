@@ -22,8 +22,6 @@ public class Main {
                 String[] columns = line.split("\\|");
                 Country country = new Country(columns[0], columns[1]);
                 countries.add(country);
-
-
             }
             return countries;
         }
@@ -33,9 +31,20 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         parseCountry();
+
+         for(Country country: countries){
+             String l = country.getName();
+             char l2 = l.charAt(0);
+             String letter = String.valueOf(l2);
+             ArrayList names = new ArrayList();
+             String n = country.getName();
+             names.add(n);
+             map.put(letter, names);
+
+         }
+
         System.out.println("Type a letter");
         String selection = scanner.nextLine();
-
         ArrayList selectedCountries = new ArrayList<>();
         for (Country country : countries){
             String n = country.getName();
@@ -43,8 +52,7 @@ public class Main {
                 selectedCountries.add(n);
             }
         }
-
-
+        System.out.println(map);
     }
 
 }
