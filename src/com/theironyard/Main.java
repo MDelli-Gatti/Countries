@@ -33,15 +33,21 @@ public class Main {
 
         }
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws Exception {
 
         parseCountry();
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Type a letter");
         String selection = scanner.nextLine();
-        ArrayList<Country> selectedCountries = map.get(selection);
-        System.out.println(selectedCountries);
+        int selectionLength = selection.length();
+        if (selectionLength == 1) {
+            ArrayList<Country> selectedCountries = map.get(selection);
+            System.out.println(selectedCountries);
+        }
+        else {
+            throw new Exception("Type one and only one letter.");
+        }
     }
 
 }
