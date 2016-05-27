@@ -37,25 +37,11 @@ public class Main {
 
         parseCountry();
 
-
-
-
-        System.out.println(countries);
-        System.out.println(map);
-
-
-
-
-        /*System.out.println("Type a letter");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Type a letter");
         String selection = scanner.nextLine();
-        ArrayList selectedCountries = new ArrayList<>();
-        for (Country country : countries){
-            String n = country.getName();
-            if (n.startsWith(selection)){
-                selectedCountries.add(n);
-            }
-        }
-        System.out.println();*/
+        ArrayList<Country> selectedCountries = map.get(selection);
+        System.out.println(selectedCountries);
     }
 
 }
