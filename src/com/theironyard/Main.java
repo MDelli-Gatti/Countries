@@ -9,41 +9,44 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
-
     static ArrayList<Country> countries = new ArrayList<>();
-    static HashMap<String, ArrayList<Country>> map = new HashMap<>();
+    static HashMap<String, ArrayList<Country>> map = new HashMap();
 
-        public static ArrayList<Country> parseCountry() throws FileNotFoundException {
-
-            File f = new File("countries.txt");
-            Scanner fileScanner = new Scanner(f);
+    public static void parseCountry() throws FileNotFoundException {
+        File f = new File("countries.txt");
+        Scanner fileScanner = new Scanner(f);
             while (fileScanner.hasNext()) {
                 String line = fileScanner.nextLine();
                 String[] columns = line.split("\\|");
                 Country country = new Country(columns[0], columns[1]);
                 countries.add(country);
+        }
+        for (Country country : countries){
+            String name = country.getName();
+            String firstLetter = String.valueOf(name.charAt(0));
+            if (!map.containsKey(firstLetter)) {
+                map.put(firstLetter, new ArrayList<>());
             }
-            return countries;
+            ArrayList<Country> arr = map.get(firstLetter);
+            arr.add(country);
         }
 
+        }
 
     public static void main(String[] args) throws FileNotFoundException {
-        Scanner scanner = new Scanner(System.in);
 
         parseCountry();
 
-         for(Country country: countries){
-             String l = country.getName();
-             char l2 = l.charAt(0);
-             String letter = String.valueOf(l2);
-             ArrayList names = new ArrayList();
-             String n = country.getName();
-             names.add(n);
-             map.put(letter, names);
 
-         }
 
-        System.out.println("Type a letter");
+
+        System.out.println(countries);
+        System.out.println(map);
+
+
+
+
+        /*System.out.println("Type a letter");
         String selection = scanner.nextLine();
         ArrayList selectedCountries = new ArrayList<>();
         for (Country country : countries){
@@ -52,7 +55,7 @@ public class Main {
                 selectedCountries.add(n);
             }
         }
-        System.out.println(map);
+        System.out.println();*/
     }
 
 }
